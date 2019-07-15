@@ -1,0 +1,25 @@
+version: "3.7"
+
+services: 
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports: 
+      - 5432:5432
+    environment: 
+      - POSTGRES_DB=database
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234567
+
+  tm-stream:
+    container_name: tm-stream
+    image: tm-stream
+    environment: 
+      - HOST_DB=localhost
+      - PORT_DB=5432
+      - USER_DB=postgres
+      - PASSWORD_DB=1234567
+      - NAME_DB=database
+      - SSL_DB=disable
+    ports: 
+      - 8080:8080
